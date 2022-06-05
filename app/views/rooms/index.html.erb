@@ -1,0 +1,34 @@
+<div class="container">
+  <%= render "shared/devise" %>
+  <h2 class="title">ルーム一覧</h2>
+</div>
+
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @rooms.each do |room| %>
+      <div class="card">
+        <div class="card-image">
+          <%= link_to room_path(room) do %>
+            <%= attachment_image_tag room, :room_image, fallback: "no-image.png", :size => '500x500', class: "imags" %>
+          <% end %>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <%= room.title %>
+            <%= link_to room_path(room), class: "panel-block" do %>
+            <button class="button is-fullwidth is-primary is-outlined">
+              <span class="panel-icon">
+                <i class="fas fa-book" aria-hidden="true"></i>
+              </span>
+              このルームを見る
+            </button>
+            <% end %>
+          </div>
+          <div class="content has-text-right">
+            <time><%= room.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>

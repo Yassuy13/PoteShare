@@ -1,0 +1,32 @@
+<div class="home-main">
+  <%= render "shared/devise" %>
+  <div class="main-search">
+    <h3 class="main-message">Potepan Shareでまだ体験したことのない旅をしよう</h3>
+    <div class="container-form">
+    <%= form_with url: '/rooms', method: :get do |f| %>
+      <%= f.text_field :area, class:'form__txt', size: 10, value: params[:area], :placeholder => "東京" %>
+      <%= f.submit '検索', name: nil, class: 'btn btn__search' %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="home-sub">
+  <h3>おすすめのエリア</h3>
+    <div class = "content">
+      <div class="contents-item">
+        <%= link_to rooms_path(search: "東京") do %>
+          <li><p>東京</p><img class="area-img" src="https://www.photock.jp/photo/middle/photo0000-3718.jpg"></li>
+        <% end %>
+        <%= link_to rooms_path(search: "大阪") do %>
+          <li><p>大阪</p><img class="area-img" src="https://www.photock.jp/photo/middle/photo0000-1782.jpg"></li>
+        <% end %>
+        <%= link_to rooms_path(search: "福岡") do %>
+          <li><p>福岡</p><img class="area-img" src="https://www.photock.jp/photo/middle/photo0000-2704.jpg"></li>
+        <% end %>
+        <%= link_to rooms_path(search: "札幌") do %>
+          <li><p>札幌</p><img class="area-img" src="https://www.photock.jp/photo/middle/photo0000-3338.jpg"></li>
+        <% end %>
+      </div>
+    </div>
+</div>

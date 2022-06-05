@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Poteshare</title>
+    <title>StayApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,54 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class ="header">
+      <div class="header-form">
+        <a href="/">Pote Share</a>
+        <div>
+          <%= form_with url: '/rooms', method: :get do |f| %>
+            <%= f.text_field :area, class:'form__txt', size: 10, value: params[:area], :placeholder => "エリア" %>
+            <%= f.text_field :keyword, class:'form__txt', size: 10, value: params[:keyword], :placeholder => "キーワード" %>
+            <%= f.submit '検索', name: nil, class: 'btn btn__search' %>
+          <% end %>
+        </div>
+        <div class="header-left">
+          <div class="change-buttons">
+            <% if user_signed_in? %>
+              <div>
+                <p class="user-name"><%= current_user.name %></p>
+              </div>
+              <% if current_user.name? %>
+                <p class="header-img" id="user-img"><%= attachment_image_tag @user, :profile_image, :size => '50x50', class: 'user-img' %></p>
+              <% else %>
+                <p class="header-img" id="user-img"><%= image_tag "/assets/default_icon.jpg", :size => '50x50', class: 'user-img' %></p>
+              <% end %>
+          </div>
+            <% else %>
+          <div class = "btn" >
+            <button type = "submit" class = "btn0"><%= link_to "ログイン", new_user_session_path %></button>
+            <button type = "submit" class = "btn1"><%= link_to "登録する", new_user_registration_path %></button>
+          </div>
+            <% end %>
+        
+          <% if user_signed_in? %>
+            <ul class="menu menu-vanish" id="menu">
+              <li><%= link_to "ルーム登録", new_room_path %></li>
+              <li><%= link_to "予約済みルーム一覧", room_reservations_path(current_user) %></li>
+              <li><%= link_to "登録済みルーム一覧", rooms_path %></li>
+              <li><%= link_to "設定", user_path(current_user) %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="main">
+      <%= yield %>
+    </div>
+    
+    <div class="footer">
+      <p>Welcome to my app</p>
+    </div>
   </body>
 </html>

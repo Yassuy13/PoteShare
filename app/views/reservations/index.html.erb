@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="title">ルーム予約一覧</h1>
+    <div class="columns is-multiline">
+      <% @reservations.each do |reservation| %>
+        <% @rooms = Room.where(id: reservation.room_id) %>
+        <% @rooms.each do |room| %>
+          <div class="column is-4">
+            <div class="card">
+              <div class="image">
+                <figure class="image">
+                  <%= link_to room_path(room) do %>
+                    <%= attachment_image_tag room, :room_image, fallback: "no-image.png", :size => '500x500', class: "imags" %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content has-text-weight-semibold has-text-centered">
+                    <p class="label"><%= room.title %></p>
+                    <p class="label"><%= room.body %></p>
+                    <p class="label"><%= reservation.person %>人</p>
+                    <p class="label">チェックイン：<%= reservation.check_in.to_s(:datetime_jp) %></p>
+                    <p class="label">チェックアウト：<%= reservation.check_out.to_s(:datetime_jp) %></p>
+                    <p class="label">金額：<%= (reservation.check_out.to_date - reservation.check_in.to_date).to_i * room.price * reservation.person %>円</p>
+                      <%= link_to room_path(room), class: "panel-block" do %>
+                    <button class="button is-fullwidth is-primary is-outlined">このルームを見る</button>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="content has-text-right">
+                  <time><%= room.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
