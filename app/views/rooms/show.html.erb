@@ -1,0 +1,74 @@
+<div class="container">
+  <h2 class="title">ルーム詳細</h2>
+  <%= render "shared/errors" %>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <%= attachment_image_tag @room, :room_image, fallback: "no-image.png", :size => '500x500' %>
+      </figure>
+    </div>
+    <div class="content">
+      <table class="table is-narrow">
+        <tr>
+          <th><%= @room.title %></th>
+        </tr>
+        <tr>
+          <td><%= simple_format @room.address %></td>
+        </tr>
+        <tr>
+          <td><%= simple_format @room.body %></td>
+        </tr>
+      </table>
+      <% if @room.user.id == current_user.id %>
+        <%= link_to "編集画面へ", edit_room_path(@room), class: "button is-success" %>
+        <%= link_to "削除", room_path(@room), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-success" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="column is-3">
+    <p class="panel-heading">
+      予約
+    </p>
+    <%= form_with model: [@room, @reservation] do |f| %>
+      <%= f.hidden_field :room_id, :value => @room.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="field">
+        <label class="label">価格</label>
+        <div class="control">
+          ¥<%= @room.price %>/人
+        </div>
+      </div>
+      
+      <div class="field">
+        <%= f.label :チェックイン, class: "label" %>
+        <div class="control has-icons-left has-icons-right">
+          <%= f.date_field :check_in, class: "input" %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <%= f.label :チェックアウト, class: "label" %>
+        <div class="control has-icons-left has-icons-right">
+          <%= f.date_field :check_out, class: "input" %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <%= f.label :人数, class: "label" %>
+        <div class="control has-icons-left has-icons-right">
+          <%= f.number_field :person, :min => 1, :step => 1, class: "input" %>
+        </div>
+      </div>
+      
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <%= f.submit '確認',class: " button is-success" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

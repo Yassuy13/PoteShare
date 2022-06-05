@@ -1,0 +1,83 @@
+.home-main {
+  background-image: url(https://presite-potepancamp-rails-02.herokuapp.com/assets/img_cover_top.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 650px;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+.main-search {
+  background-color: #fff;
+  width: 500px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+.main-message {
+  margin: 0;
+}
+
+.home-sub {
+  display: block;
+}
+
+.container-form {
+  display: flex;
+  left: 50%;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.search-button {
+  background-color: skyblue;
+  border: 1px solid skyblue;
+  color: #fff;
+  cursor: pointer;
+}
+
+h3 {
+  margin: 30px;
+}
+
+.content {
+  display: block;
+  width: 100%;
+}
+
+.contents-item {
+  display: flex;
+}
+
+.contents-item li {
+  flex-basis: 25%;
+  padding: 15px;
+  display: block;
+  position: relative;
+  text-align: center;
+  left: 50%;
+}
+
+.contents-item li p {
+  color: #FFF;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 50px;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  padding-right: 30px;
+}
+
+.area-img {
+  object-fit: cover;
+  height: 360px;
+  border-radius: 5px;
+}

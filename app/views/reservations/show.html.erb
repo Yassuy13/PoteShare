@@ -1,0 +1,56 @@
+<div class="container">
+  <h2 class="title">予約確認</h2>
+  <%= render "shared/errors", obj:@reservation %>
+
+  <section class="main-section">
+    <div class="book_show_main">
+      <div class="column, columns is-centered">
+        <article class="panel is-link">
+          <div class="field check_book check_top">
+            <p class="label">ルーム名</p>
+            <div class="control has-icons-left has-icons-right">
+              <%= @room.title %>
+            </div>
+          </div>
+          <div class="field check_book">
+            <p class="label">料金</p>
+            <div class="control">
+              ¥<%= @room.price %>/日
+            </div>
+          </div>
+          <div class="field check_book">
+            <p class="label">チェックイン</p>
+            <div class="control has-icons-left has-icons-right">
+              <%= @reservation.check_in %>
+            </div>
+          </div>
+        
+          <div class="field check_book">
+            <p class="label">チェックアウト</p>
+            <div class="control has-icons-left has-icons-right">
+              <%= @reservation.check_out %>
+            </div>
+          </div>
+        
+          <div class="field check_book">
+            <p class="label">人数</p>
+            <div class="control has-icons-left has-icons-right">
+              <%= @reservation.person %>人
+            </div>
+          </div>
+        
+          <div class="field check_book las">
+            <p class="label">合計金額</p>
+            <div class="control">
+              ¥<%= @price %>
+            </div>
+          </div>
+        
+          <div class="button-container">
+          <%= link_to "ルーム予約一覧", room_reservations_path, class: "button is-success is-fullwidth" %>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>

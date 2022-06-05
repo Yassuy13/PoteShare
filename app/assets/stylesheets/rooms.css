@@ -1,0 +1,20 @@
+.label {
+  padding: 10px 30px 0 30px;
+}
+.check_par{
+  padding-bottom:20px;
+}
+.control {
+  padding: 0 30px 0 30px;
+}
+
+.register {
+  padding-top: 20px;
+  padding-right: 300px;
+}
+
+.image{
+  border-radius:50%;
+  height: 400px;
+  width: 600px;
+}
